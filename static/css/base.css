@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+
+/* Removing the default styling from all the HTML elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* page styling */
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    /* padding: 0.5rem; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100%;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    margin-right: 1rem;
+
+    color: #002347;
+}
+
+header a:hover {
+    text-decoration: underline;
+    text-decoration-color: #fdc632;
+}
+
+.main-logo {
+    display: flex;
+    justify-content: center;
+}
+
+#ignou-logo{
+    /* border: 1px solid black; */
+    width: auto;
+    height: 6rem;
+}
+
+.project-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-logo img {
+    width: 8rem;
+    height: 6rem;
+}
+
+.nav-links button{
+    background-color: #F7DC6F;
+    border: 0px none;
+    border-radius: 3px;
+
+    padding: 0.4rem;
+    width: 4rem;
+    cursor: pointer;
+    color: #002347;
+}
+
+.nav-links button:hover {
+    background-color: #fdc632;
+    /* background-color: #F1C40F; */
+}
+
+footer {
+    background-color: #002347;
+    color: white;
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    min-width: 100vw;
+
+    /* aligning the footer to the bottom */
+    /* margin-top: auto; */
+
+}
+
+.creator-info span {
+    color: #fdc632;
+}
+
+.credits ul {
+    list-style-type: none;
+}
+
+.credits a {
+    color: #3498DB;
+}

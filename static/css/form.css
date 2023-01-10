@@ -1,0 +1,80 @@
+/* generic form styling */
+form {
+    font-size: 1.3rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid black;
+}
+
+form h3 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+form p {
+    width: 100%;
+    text-align: center;
+
+    margin-top: 1rem;
+    width: 30rem;
+}
+
+form label {
+    padding: 0.2rem;
+    display: inline-block;
+    width: 10rem;
+}
+
+form input:not([type='radio']), select {
+    padding: 0.2rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+
+    height: 2.3rem;
+    width: 15rem;
+}
+
+form input[type='radio'] {
+    margin: auto 0.5rem;
+}
+
+form button[type='submit'] {
+    width: 6rem;
+    height: 2rem;
+    margin-top: 2rem;
+
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #fdc632;
+    color: #002347;
+}
+
+/* .signup-form label {
+    display: inline-block;
+    width: 10rem;
+} */
+
+/* .signup-form input, select {
+    height: 2.3rem;
+    width: 15rem;
+} */
+
+form input[name='password'] {
+    -webkit-text-security: disc;
+}
+
+/* .signup-form p {
+    margin-top: 1rem;
+    width: 30rem;
+} */
+
+.errorlist {
+    display: none;
+}

@@ -1,0 +1,64 @@
+.intro-content {
+    height: 100%;
+    width: 60vw;
+    font-size: 1.2rem;
+
+    display: flex;
+    flex-direction: column;
+    background-color: #D6EAF8;
+    padding: 1rem 2rem;
+    /* align-items: center; */
+
+    /* border: 1px solid black; */
+
+}
+
+.intro-content > h1 {
+    align-self: center;
+    /* min-width: 80%; */
+}
+
+.project-details-div {
+    margin-top: 1rem;
+    width: 100%;
+    align-self: center;
+    /* padding-left: 1rem; */
+}
+
+.project-details-div ul {
+    margin-left: 2rem;
+}
+
+.info-button {
+    margin-top: 1rem;
+    align-self: center;
+}
+
+.info-button a {
+    margin-right: 1rem;
+    /* margin-bottom: 1rem; */
+}
+
+#login-button {
+    background-color: #F7DC6F;
+    color: #002347;
+    border: 0px none;
+    border-radius: 3px;
+    font-size: 1.1rem;
+
+    padding: 0.4rem;
+    width: 5rem;
+    cursor: pointer;
+}
+
+#signup-button {
+    background-color: #002347;
+    color: #F7DC6F;
+    border: 0px none;
+    border-radius: 3px;
+    font-size: 1.1rem;
+
+    padding: 0.4rem;
+    width: 5rem;
+    cursor: pointer;
+}

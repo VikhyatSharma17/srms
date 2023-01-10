@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+    <hr />
+
+    <section class="intro-content">
+        <h1>Project Introduction</h1>
+        <div class="project-details-div">
+            <p>
+                <strong>Student Result Management System</strong> helps you manage the results of the students. <br>
+        
+                This is a BCA final year project created for <strong>IGNOU</strong>.
+            </p>
+        </div>
+        <div class="project-details-div">
+            <p>
+                The technology stack used are:
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Python + Django Framework</li>
+                </ul> 
+            </p>
+        </div>
+        <div class="project-details-div">
+            <p>
+                Student Details:
+                <ul>
+                    <li>Name: Vikhyat Sharma</li>
+                    <li>Enrollment No.: 2000111970</li>
+                    <li>Programme: BCA (Bachelors in Computer Applications)</li>
+                    <li>Session: Jan 2020 - Dec 2022</li>
+                </ul> 
+            </p>
+        </div>
+        <div class="info-button">
+            <a href="{% url 'accounts:account-login' %}"><button id="login-button">Login</button></a>
+            <a href="{% url 'accounts:account-signup' %}"><button id="signup-button">Signup</button></a>
+        </div>
+    </section>
+
+    <hr />
+{% endblock %}
