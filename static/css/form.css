@@ -52,28 +52,17 @@ form button[type='submit'] {
     border: none;
     border-radius: 5px;
 
-    background-color: #fdc632;
+    background-color: #F7DC6F;
     color: #002347;
 }
 
-/* .signup-form label {
-    display: inline-block;
-    width: 10rem;
-} */
-
-/* .signup-form input, select {
-    height: 2.3rem;
-    width: 15rem;
-} */
+form button[type='submit']:hover {
+    background-color: #fdc632;
+}
 
 form input[name='password'] {
     -webkit-text-security: disc;
 }
-
-/* .signup-form p {
-    margin-top: 1rem;
-    width: 30rem;
-} */
 
 .errorlist {
     display: none;

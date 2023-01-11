@@ -13,8 +13,8 @@ class Course(models.Model):
     name = models.CharField(max_length=35)
     courseCode = models.CharField(max_length=8)
 
-    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
-
+    subject = models.ManyToManyField(Subject)
+ 
     def __str__(self):
         return f"{self.courseCode} - {self.name}"
 
@@ -32,7 +32,7 @@ class Student(CustomUser):
     course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"{self.user.username}"
+        return f"{self.first_name}"
 
 
 class Teacher(CustomUser):

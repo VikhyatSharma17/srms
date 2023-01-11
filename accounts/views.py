@@ -86,12 +86,16 @@ def accountSignup(request):
         request (request): HTTP Request
     """
     form = UserSelectionForm()
+    print("Inside accountSignup method")
 
     if request.method == 'POST':
-        userType = request.POST['userType']
+        print("Inside accountSignup method POST")
+        userType = request.POST.get('userType', 'student')
         if userType == 'student':
+            print("Inside accountSignup method POST student")
             return studentSignup(request)
         elif userType == 'teacher':
+            print("Inside accountSignup method POST teacher")
             return teacherSignup(request)
 
     context = {
@@ -107,10 +111,10 @@ def studentSignup(request):
         request (request): HTTP Request
     """
     form = StudentSignupForm()
-    # print("Student signup initial")
+    print("Inside studentSignup method")
 
     if request.method == 'POST':
-        # print("Student signup POST")
+        print("Inside studentSignup method POST")
         form = StudentSignupForm(request.POST)
 
         if form.is_valid():

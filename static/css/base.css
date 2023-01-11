@@ -39,8 +39,7 @@ header a {
 }
 
 header a:hover {
-    text-decoration: underline;
-    text-decoration-color: #fdc632;
+    color: #F1C40F;
 }
 
 .main-logo {
@@ -78,7 +77,6 @@ header a:hover {
 
 .nav-links button:hover {
     background-color: #fdc632;
-    /* background-color: #F1C40F; */
 }
 
 footer {
@@ -91,10 +89,6 @@ footer {
     align-items: center;
     height: 5rem;
     min-width: 100vw;
-
-    /* aligning the footer to the bottom */
-    /* margin-top: auto; */
-
 }
 
 .creator-info span {

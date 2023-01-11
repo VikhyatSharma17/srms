@@ -29,6 +29,14 @@
     margin-left: 2rem;
 }
 
+.project-details-div li {
+    list-style-type: none;
+}
+
+.project-details-div li i {
+    margin-right: 0.5em;
+}
+
 .info-button {
     margin-top: 1rem;
     align-self: center;
@@ -36,7 +44,6 @@
 
 .info-button a {
     margin-right: 1rem;
-    /* margin-bottom: 1rem; */
 }
 
 #login-button {
@@ -51,6 +58,10 @@
     cursor: pointer;
 }
 
+#login-button:hover {
+    background-color: #fdc632;
+}
+
 #signup-button {
     background-color: #002347;
     color: #F7DC6F;
@@ -61,4 +72,8 @@
     padding: 0.4rem;
     width: 5rem;
     cursor: pointer;
+}
+
+#signup-button:hover {
+    background-color: #154360;
 }
