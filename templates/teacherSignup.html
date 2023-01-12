@@ -6,11 +6,13 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST" action="." class="signup-form">
-        <h3>Student Signup Form</h3>
+
+    <form action="." method="POST">
+        <h3>TEACHER SIGNUP FORM</h3>
         {% csrf_token %}
         {{ form.as_p }}
 
         <button type="submit">Signup</button>
     </form>
+
 {% endblock %}

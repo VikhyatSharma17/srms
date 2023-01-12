@@ -7,22 +7,17 @@
     flex-direction: column;
     background-color: #D6EAF8;
     padding: 1rem 2rem;
-    /* align-items: center; */
-
-    /* border: 1px solid black; */
-
+    border-radius: 15px;
 }
 
 .intro-content > h1 {
     align-self: center;
-    /* min-width: 80%; */
 }
 
 .project-details-div {
     margin-top: 1rem;
     width: 100%;
     align-self: center;
-    /* padding-left: 1rem; */
 }
 
 .project-details-div ul {
