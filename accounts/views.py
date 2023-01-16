@@ -5,7 +5,7 @@ from django.forms import BaseModelForm
 
 from typing import Any
 
-from .forms import UserSelectionForm, StudentSignupForm, TeacherSignupForm, StudentLoginForm
+from .forms import UserSelectionForm, StudentSignupForm, TeacherSignupForm
 from .models import Student
 
 # views.py file handles all the requests and generates responses against them whether
@@ -14,6 +14,7 @@ from .models import Student
 
 class HomePageView(generic.TemplateView):
     template_name = 'home.html'
+
 
 class AccountSignupView(generic.FormView):
     template_name = 'userTypeSelection.html'
@@ -29,6 +30,7 @@ class AccountSignupView(generic.FormView):
             print("Inside AccountSignupView class method POST teacher")
             return redirect("accounts:account-signup-teacher")
 
+
 class StudentSignupView(generic.CreateView):
     template_name = 'studentSignup.html'
     form_class = StudentSignupForm
@@ -36,22 +38,10 @@ class StudentSignupView(generic.CreateView):
     def get_success_url(self):
         return reverse('accounts:account-login')
 
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        """Saves the form data to the database if valid data is provided
+    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+        print("Inside form_invalid method of StudentSignupView")
+        return super().form_invalid(form)
 
-        Creates a new username for the user using their firstname and lastname
-
-        Args:
-            form (BaseModelForm): Form Data
-
-        Returns:
-            HttpResponse: HTTP Response redirect
-        """
-        print("Inside form_valid method of StudentSignupView")
-        studentDetails = form.save(commit=False)
-        studentDetails.username = f"{studentDetails.last_name}{studentDetails.first_name[:2]}".lower()
-
-        return super().form_valid(form)
 
 class StudentDetailView(generic.DetailView):
     template_name = 'accounts/studentDetail.html'
@@ -64,12 +54,12 @@ class TeacherSignupView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('accounts:account-login')
+        
 
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        teacherDetails = form.save(commit=False)
-        teacherDetails.username = f"{teacherDetails.last_name.lower()}{teacherDetails.first_name[:2].capitalize()}"
+# class AccountLoginView():
+#     # TODO: Complete the login view 
+#     pass
 
-        return super().form_valid(form)
 
 def homePage(request):
     """View for the app home page

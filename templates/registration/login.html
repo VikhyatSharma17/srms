@@ -2,17 +2,16 @@
 {% load static %}
 
 {% block extrahead %}
+
     <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}">
+
 {% endblock %}
 
 {% block content %}
-
-    <form action="." method="POST" class="signup-form">
-        <h3>Teacher Signup Form</h3>
+    <form action="." method="POST">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit">Signup</button>
+        <button type="submit">Login</button>
     </form>
-
 {% endblock %}
