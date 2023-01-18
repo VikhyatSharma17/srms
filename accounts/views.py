@@ -6,7 +6,7 @@ from django.forms import BaseModelForm
 from typing import Any
 
 from .forms import UserSelectionForm, StudentSignupForm, TeacherSignupForm
-from .models import Student
+from .models import CustomUser, Student
 
 # views.py file handles all the requests and generates responses against them whether
 # it be HTML page or a new file
@@ -54,11 +54,18 @@ class TeacherSignupView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('accounts:account-login')
-        
 
-# class AccountLoginView():
-#     # TODO: Complete the login view 
-#     pass
+
+class AccountProfile(generic.View):
+    template_name = 'accounts/profile.html'
+
+    def get(self, request):
+        user = CustomUser.objects.get(pk=request.user.id)
+        context = {
+            'user': user
+        }
+
+        return render(request, self.template_name, context=context)
 
 
 def homePage(request):

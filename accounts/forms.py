@@ -34,7 +34,7 @@ class StudentSignupForm(UserCreationForm):
 
         # Creating a new user with the form details
         user = super().save(commit=False)
-        user.username = f"{user.last_name.lower()}{user.first_name[:2].capitalize()}ST"
+        user.username = f"{user.last_name.lower()}{user.first_name[:2].capitalize()}S"
         user.is_student = True
         user.save()
 
@@ -66,7 +66,7 @@ class TeacherSignupForm(UserCreationForm):
 
         # Adding teacher specific fields to the user and creating it
         user.is_teacher = True
-        user.username = f"{user.last_name.lower()}{user.first_name[:2].capitalize()}TE"
+        user.username = f"{user.last_name.lower()}{user.first_name[:2].capitalize()}T"
         user.save()
 
         # Creating a teacher model entry with the created user

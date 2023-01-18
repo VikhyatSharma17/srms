@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2>Logged in as user: {{ user.first_name }} {{ user.last_name }}</h2>
+    <h3>User type: 
+        {% if user.is_student %}
+            Student
+        {% elif user.is_teacher %}
+            Teacher
+        {% else %}
+            Unknown
+        {% endif %}
+    </h3>
+{% endblock %}
