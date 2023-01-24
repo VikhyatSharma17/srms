@@ -1,0 +1,23 @@
+.main-content {
+    /* makes the container fill the available height space*/
+    flex-grow: 1;
+
+    /* makes the content show content side by side */
+    display: flex;
+    min-width: 100%;
+
+
+    border: 1px solid red;
+}
+
+.nav-bar {
+    border: 1px solid black;
+    
+    width: 10rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+

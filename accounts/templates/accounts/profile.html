@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
+    
+    <div class="main-content">
+        <section class="nav-bar">
+            <a href="#main-content">Dashboard</a>
+            <a href="#profile-detail">Profile</a>
+            <a href="#results">Results</a>
 
-    <h2>Logged in as user: {{ user.first_name }} {{ user.last_name }}</h2>
-    <h3>User type: 
-        {% if user.is_student %}
-            Student
-        {% elif user.is_teacher %}
-            Teacher
-        {% else %}
-            Unknown
-        {% endif %}
-    </h3>
+            <a href="{% url 'accounts:account-logout' %}">Logout</a>
+        </section>
+        <section class="dashboard">
+            <h2>Hi, {{ user.first_name }}</h2>
+
+            Dashboard section
+        </section>
+    </div>
+
 {% endblock %}

@@ -10,10 +10,10 @@
 
 
 /* page styling */
-html {
+/* html {
     min-height: 100vh;
     min-width: 100vw;
-}
+} */
 
 body {
     font-family: 'Lato', sans-serif;
@@ -21,16 +21,26 @@ body {
 
     display: flex;
     flex-direction: column;
+    justify-content: baseline;
     justify-content: space-between;
     align-items: center;
     min-height: 100vh;
     min-width: 100vw;
+
+
+    /* border: 5px solid darkblue; */
+
 }
 
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 header a {
@@ -80,10 +90,23 @@ header a:hover {
     background-color: #fdc632;
 }
 
+button.profile-link {
+    background-color: transparent;
+    border: 1px solid #002347;
+    color: #002347;
+}
+
+button.profile-link:hover {
+    color: #dfc632;
+    background-color: #154360;
+}
+
 footer {
     background-color: #002347;
     color: white;
     padding: 0.5rem 1rem;
+
+    align-self: flex-end;
 
     display: flex;
     justify-content: space-between;
@@ -94,6 +117,12 @@ footer {
 
 .creator-info span {
     color: #fdc632;
+}
+
+.creator-info i {
+    color: red;
+    padding: 0 0.2rem;
+    font-size: 1rem;
 }
 
 .credits ul {
