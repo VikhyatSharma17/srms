@@ -17,7 +17,7 @@ class UserSelectionForm(forms.Form):
 
 class StudentSignupForm(UserCreationForm):
     course = forms.ModelChoiceField(
-        queryset=Course.objects.all()
+        queryset = Course.objects.all()
     )
 
     class Meta(UserCreationForm.Meta):

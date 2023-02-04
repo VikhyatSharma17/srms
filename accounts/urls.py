@@ -24,6 +24,8 @@ urlpatterns = [
     path('studentAccountSignup/', views.StudentSignupView.as_view(), name='account-signup-student'),
     path('teacherAccountSignup/', views.TeacherSignupView.as_view(), name='account-signup-teacher'),
     path('profile/', views.AccountProfile.as_view(), name='account-profile'),
+    path('profile/course-details/', views.StudentCourseDetails.as_view(), name='course-details'),
+    path('profile/result-details/', views.StudentCourseDetails.as_view(), name='result-details'),
     path(r'<int:pk>/', views.AccountProfile.as_view(), name='account-profile'),
     # path('<int:pk>/', views.StudentDetailView.as_view(), name='student-detail'),
 ]

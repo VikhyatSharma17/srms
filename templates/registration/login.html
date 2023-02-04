@@ -8,10 +8,20 @@
 {% endblock %}
 
 {% block content %}
-    <form action="." method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <button type="submit">Login</button>
-    </form>
+    <div class="main-content">
+        <img src="../../static/images/login-illustration.jpg" alt="Person entering password on laptop">
+        <form action="." method="POST">
+            <h3>Login to your account</h3>
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <button type="submit">Login</button>
+        </form>
+        <!-- <div class="illustration">
+            
+        </div> -->
+        <!-- <div class="login-form">
+            
+        </div> -->
+    </div>
 {% endblock %}

@@ -62,11 +62,16 @@ class AccountProfile(generic.View):
     def get(self, request):
         user = CustomUser.objects.get(pk=request.user.id)
         context = {
-            'user': user
+            'user': user,
         }
+        if user.is_student:
+            courseDetails = Student.objects.get(user=user).course
+            context['course'] = courseDetails
 
         return render(request, self.template_name, context=context)
 
+class StudentCourseDetails(generic.ListView):
+    template_name = 'accounts/course.html'
 
 def homePage(request):
     """View for the app home page

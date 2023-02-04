@@ -9,16 +9,64 @@
     
     <div class="main-content">
         <section class="nav-bar">
-            <a href="#main-content">Dashboard</a>
-            <a href="#profile-detail">Profile</a>
-            <a href="#results">Results</a>
-
-            <a href="{% url 'accounts:account-logout' %}">Logout</a>
+            <a href="{% url 'accounts:account-home' %}">
+                <img src="{% static '/images/srms-logo-new.png' %}" alt="Education Icon">
+            </a>
+            <div class="nav-list">
+                <div class="list-item"><i class="fa-solid fa-grip"></i><a href="#main-content">Dashboard</a></div>
+                <div class="list-item"><i class="fa-solid fa-user-large"></i><a href="#profile-detail">Profile</a></div>
+                <div class="list-item"><i class="fa-solid fa-square-poll-vertical"></i><a href="#results">Results</a></div>
+                <div class="list-item"><i class="fa-solid fa-right-from-bracket"></i><a href="{% url 'accounts:account-logout' %}">Logout</a></div>
+            </div>
         </section>
         <section class="dashboard">
-            <h2>Hi, {{ user.first_name }}</h2>
+            <div class="heading">
+                <h2>Dashboard</h2>
+            </div>
 
-            Dashboard section
+            <div class="welcome">
+                <p class="short-text">Hi, {{ user.first_name }}</p>
+                <p class="long-text">Welcome to your profile dashboard</p>
+                <div class="image"></div>
+            </div>
+
+            {% if user.is_student %}
+                <div class="course-list">
+                    <p class="short-text">Enrolled Course</p>
+                    <table class="course-details">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ course.courseCode }}</td>
+                                <td><a href="{% url 'accounts:course-details' %}">Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+
+            <div class="profile-overview">
+                <div class="profile-img"></div>
+                <div class="profile-info">
+                    {{ user.first_name }} {{ user.last_name }}
+                </div>
+                <div class="role">
+                    {% if user.is_student %}
+                        Student
+                    {% elif user.is_teacher %}
+                        Teacher
+                    {% endif %}
+                </div>
+                <div class="other-links">
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+                    <a href="{% url 'accounts:result-details' %}">View your results</a>
+                </div>
+            </div>
         </section>
     </div>
 

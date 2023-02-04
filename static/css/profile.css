@@ -4,20 +4,212 @@
 
     /* makes the content show content side by side */
     display: flex;
-    min-width: 100%;
+    width: 100%;
+    background-color: hsl(204, 70%, 97%);
 
-
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
-.nav-bar {
-    border: 1px solid black;
-    
-    width: 10rem;
+.nav-bar {    
+    width: 15rem;
+    justify-self: flex-start;
+    text-align: center;
+    background-color: #D6EAF8;
+}
+
+.nav-bar img {
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-bar .nav-list {
+    font-size: 1.2rem;
+    color: #273746;
+    text-align: initial;
+
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: center;
+    gap: 2rem 0.5rem;
+}
+
+.nav-bar .nav-list .list-item {
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.list-item:hover {
+    background-color: var(--contrast-color);
+    color: #fdc632;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-bar .list-item i {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 0.2rem;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr 0.5fr 1.5fr;
+    grid-template-rows: 5rem 1fr 1.5fr 0.5fr;
+    grid-template-areas: 
+        "heading . . ."
+        "welcome welcome . profile"
+        "course course . profile"
+        ". . . .";
+    gap: 0.7rem 2rem;
+
+    width: 100%;
+    padding-left: 0.7rem;
+
+    /* border: 1px solid brown; */
+}
+
+.dashboard > div {
+    border-radius: 10px;
+}
+
+.dashboard .heading {
+    grid-area: heading;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+}
+
+.dashboard .welcome {
+    grid-area: welcome;
+    background-color: var(--main-color);
+    height: fit-content;
+
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "short-text . welcome-img"
+        "long-text long-text welcome-img";
+
+}
+ 
+.short-text {
+    grid-area: short-text;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.long-text {
+    grid-area: long-text;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+.welcome .image {
+    grid-area: welcome-img;
+
+    background-image: url('../images/taxi-modern-drip-chamber.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.dashboard .course-list {
+    grid-area: course;
+
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.course-details {
+    width: 80%;
+    text-align: center;
+    margin-left: 0.5rem;
+
+    background-color: #FCF3CF;
+    border-radius: 10px;
+    border-spacing: 0.54rem;
+}
+
+.course-details th {
+    background-color: var(--main-color);
+    border-radius: 5px;
+    height: 2rem;
+}
+
+.course-details tbody tr {
+    height: 2rem;
+}
+
+/* to add space after the table heading */
+.course-details tbody::before {
+    content: '@';
+    display: block;
+    line-height: 0.1rem;
+    text-indent: -99999px;
+}
+
+.course-details td {
+    background-color: var(--contrast-color);
+    color: var(--main-color);
+    border-radius: 5px;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.course-details tbody a {
+    color: var(--main-color);
+}
+
+.dashboard .profile-overview {
+    grid-area: profile;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    background-color: #FCF3CF;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
+    /* justify-content: center; */
+
+    /* border: 1px solid red; */
 }
 
+.profile-overview .profile-img {
+    height: 5rem;
+    width: 5rem;
+    margin-top: 2rem;
+    background-image: url("../images/user-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    /* border: 1px solid black; */
+    border-radius: 50%;
+}
+
+.profile-overview .profile-info {
+    margin-top: 1.5rem;
+    padding: 0.4rem;
+    border-radius: 10px;
+    background-color: var(--contrast-color);
+    color: var(--main-color);
+    
+
+    border: 1px solid black;
+}
+
+.profile-overview .other-links {
+    margin-top: 2rem;
+}
+
+.profile-overview .other-links a {
+    color: var(--contrast-color);
+    text-decoration: none;
+}
