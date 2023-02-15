@@ -1,0 +1,13 @@
+{% load static %}
+
+<section class="nav-bar">
+    <a href="{% url 'accounts:account-home' %}">
+        <img src="{% static '/images/srms-logo-new.png' %}" alt="Education Icon">
+    </a>
+    <div class="nav-list">
+        <div class="list-item"><i class="fa-solid fa-grip"></i><a href="#main-content">Dashboard</a></div>
+        <div class="list-item"><i class="fa-solid fa-user-large"></i><a href="#profile-detail">Profile</a></div>
+        <div class="list-item"><i class="fa-solid fa-square-poll-vertical"></i><a href="{% url 'accounts:result-details' %}">Results</a></div>
+        <div class="list-item"><i class="fa-solid fa-right-from-bracket"></i><a href="{% url 'accounts:account-logout' %}">Logout</a></div>
+    </div>
+</section>

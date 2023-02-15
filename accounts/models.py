@@ -3,10 +3,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Subject(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
-        return f"{self.id} - {self.name}"
+        return f"{self.name}"
 
 
 class Course(models.Model):
@@ -73,9 +73,9 @@ class Teacher(models.Model):
     
 class Result(models.Model):
     stuID = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subCode = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
 
     marksObtained = models.IntegerField()
 
     def __str__(self):
-        return f"{self.stuID} {self.subCode}"
+        return f"{self.stuID} - {self.subName}"

@@ -2,23 +2,16 @@
 {% load static %}
 
 {% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile_base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
     
     <div class="main-content">
-        <section class="nav-bar">
-            <a href="{% url 'accounts:account-home' %}">
-                <img src="{% static '/images/srms-logo-new.png' %}" alt="Education Icon">
-            </a>
-            <div class="nav-list">
-                <div class="list-item"><i class="fa-solid fa-grip"></i><a href="#main-content">Dashboard</a></div>
-                <div class="list-item"><i class="fa-solid fa-user-large"></i><a href="#profile-detail">Profile</a></div>
-                <div class="list-item"><i class="fa-solid fa-square-poll-vertical"></i><a href="#results">Results</a></div>
-                <div class="list-item"><i class="fa-solid fa-right-from-bracket"></i><a href="{% url 'accounts:account-logout' %}">Logout</a></div>
-            </div>
-        </section>
+        
+        {% include 'accounts/sidebar.html' %}
+
         <section class="dashboard">
             <div class="heading">
                 <h2>Dashboard</h2>
@@ -67,7 +60,9 @@
                     <a href="{% url 'accounts:result-details' %}">View your results</a>
                 </div>
             </div>
+
         </section>
+
     </div>
 
 {% endblock %}

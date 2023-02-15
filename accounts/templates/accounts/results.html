@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load resulttags %}
+
+{% block extrahead %}
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/profile_base.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static '/css/results.css' %}" >
+
+{% endblock %}
+
+<!-- 
+    TODO: Make the nav bar a reuseable template
+    TODO: Create a list of subjects with their results for a student
+    
+    <class 'django.db.models.query.QuerySet'>
+    >>> from accounts.models import Result
+    >>> r1 = Result.objects.get(stuID=s1.id, subCode=s1_subs[0].id)
+    >>> r1
+    <Result: Vikhyat Sharma 1 - English>
+    >>> r1.marksObtained
+    90
+-->
+
+{% block content %}
+
+    <section class="main-content">
+        {% include 'accounts/sidebar.html' %}
+
+        <section class="results">
+            <div class="heading">
+                <h2>Results</h2>
+            </div>
+            {% if user.is_student %}
+                <h3 class="course-details">Course: {{ course.name }} ({{ course.courseCode }})</h3>
+                <table class="marks-details">
+                    <thead>
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Marks Obtained</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subject in course.subject.all %}
+                            <tr>
+                                {% with sub=subject.name %}
+                                    <td>{{ sub }}</td>
+                                    <td>{{ results|get_result:sub }}</td>
+                                {% endwith %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    
+        {% elif user.is_teacher %}
+            <p>Teacher result page</p>
+        {% endif %}
+        </section>
+    </section>
+
+{% endblock %}

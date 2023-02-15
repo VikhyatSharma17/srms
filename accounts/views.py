@@ -6,7 +6,7 @@ from django.forms import BaseModelForm
 from typing import Any
 
 from .forms import UserSelectionForm, StudentSignupForm, TeacherSignupForm
-from .models import CustomUser, Student
+from .models import CustomUser, Student, Result
 
 # views.py file handles all the requests and generates responses against them whether
 # it be HTML page or a new file
@@ -72,6 +72,52 @@ class AccountProfile(generic.View):
 
 class StudentCourseDetails(generic.ListView):
     template_name = 'accounts/course.html'
+
+class ResultsView(generic.DetailView):
+    template_name = 'accounts/results.html'
+
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        """Gets the results of the user and returns it to the template
+
+        Args:
+            request (HttpRequest): HTTP Request containing user data
+
+        Returns:
+            HttpResponse: HTTP response after loading the results template
+        """
+        currentUser = CustomUser.objects.get(pk=request.user.id)
+        print(f"returning results for {currentUser.first_name}")
+
+        if currentUser.is_student:
+            print("User is a student")
+            studentDetails = Student.objects.get(user=currentUser)
+            course = studentDetails.course
+            result = Result.objects.filter(stuID=studentDetails.id)
+            formattedResults = {}
+
+            print(f"Student course is: {course.courseCode}")
+            print(f"Student course is: {course.name}")
+
+            print(f"Rendering template: {self.template_name}")
+            print(f"Type of course: {course.subject.all()}")
+            
+            # vs_result.get(subName=vs_stu.course.subject.all()[0].id).marksObtained
+            for subject in course.subject.all():
+                formattedResults[subject.name] = result.get(subject=subject.id).marksObtained
+
+            print(f"Formatted results: {formattedResults}")
+            context = {
+                'course': course,
+                'results': formattedResults,
+            }
+
+            return render(request, self.template_name, *args, context=context, **kwargs)
+
+        # return super().get(request, *args, **kwargs)
+
+
+
+# Function based views    
 
 def homePage(request):
     """View for the app home page
