@@ -3,6 +3,8 @@
 
 This is created as a **BCA final year project** for IGNOU.
 
+**Note**: Currently the site supports only student profile and does not have any profile of teachers.
+
 ## Technology Stack
 The technology stack used are:
 - HTML
@@ -26,3 +28,4 @@ The technology stack used are:
     - Username: admin
     - Password: Admin#123
     - Email: admin@srms.com
+
