@@ -161,3 +161,7 @@ cython_debug/
 
 # VS Code Files
 .vscode/
+
+# ignore migrations files except __init__.py
+accounts/migrations/*
+!accounts/migrations/__init__.py
