@@ -23,8 +23,36 @@ The technology stack used are:
 - https://www.uplabs.com/posts/online-education-dashboard-ui-97252eb1-a87d-4a6f-9417-499e3f9464ff
 - https://icons8.com/illustrations/illustration/taxi-online-education-3
 
-## Database Credentials:
-- superuser:
+## Installation Requirements:
+1. Python with the packages mentioned in the `requirements.txt` file
+2. PostgreSQL installed on the system with a database called: `srms`. To create the database, run the following commands on terminal/cmd:
+    ```cmd
+    :: open psql; enter postgres password when prompted.
+    psql -U postgres
+
+    :: create database
+    CREATE DATABASE database_name;
+
+    :: check databases
+    \l
+
+    :: switch to newly created database
+    \c database_name
+    ```
+3. Make migrations for Django to create the database tables using models.py
+    ```cmd
+    python manage.py makemigrations
+
+    python manage.py migrate
+    ```
+
+## Django Database Credentials:
+1. Create Django superuser for admin dashboard using below commands:
+    ```cmd
+    python manage.py createsuperuser
+    :: enter the username, email address and password as required. 
+    ```
+- Current superuser details:
     - Username: admin
     - Password: Admin#123
     - Email: admin@srms.com
