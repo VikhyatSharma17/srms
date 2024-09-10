@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os 
+
 from pathlib import Path
+from dotenv import load_dotenv
+
+# loading the app environment variables
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5p&vx$i@9r@4=0r50va)(x9=%1)8xyt4fd*abmmvhuj4!ea3_j'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.getenv('DEBUG').lower() == 'true' else False
 
 ALLOWED_HOSTS = []
 
@@ -80,11 +86,11 @@ WSGI_APPLICATION = 'srms_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'srms',
-        'USER': 'postgres',
-        'PASSWORD': 'Postgres#123',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_ADMIN_USER'),
+        'PASSWORD': os.getenv('DATABASE_ADMIN_PASS'),
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 
