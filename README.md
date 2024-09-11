@@ -52,8 +52,3 @@ The technology stack used are:
     python manage.py createsuperuser
     :: enter the username, email address and password as required. 
     ```
-- Current superuser details:
-    - Username: admin
-    - Password: Admin#123
-    - Email: admin@srms.com
-

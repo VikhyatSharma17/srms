@@ -78,4 +78,4 @@ class Result(models.Model):
     marksObtained = models.IntegerField()
 
     def __str__(self):
-        return f"{self.stuID} - {self.subName}"
+        return f"{self.stuID} - {self.subject}"
