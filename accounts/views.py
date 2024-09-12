@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views import generic
 from django.forms import BaseModelForm
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy, reverse
 
 from typing import Any
 
@@ -48,6 +50,11 @@ class StudentDetailView(generic.DetailView):
     queryset = Student.objects.all()    # this will automatically get the student details based on the primary key
     context_object_name = 'student'
 
+
+class StudentCourseDetails(generic.ListView):
+    template_name = 'accounts/course.html'
+
+
 class TeacherSignupView(generic.CreateView):
     template_name = 'teacherSignup.html'
     form_class = TeacherSignupForm
@@ -70,8 +77,6 @@ class AccountProfile(generic.View):
 
         return render(request, self.template_name, context=context)
 
-class StudentCourseDetails(generic.ListView):
-    template_name = 'accounts/course.html'
 
 class ResultsView(generic.DetailView):
     template_name = 'accounts/results.html'
@@ -116,152 +121,157 @@ class ResultsView(generic.DetailView):
         # return super().get(request, *args, **kwargs)
 
 
-
-# Function based views    
-
-def homePage(request):
-    """View for the app home page
-
-    Args:
-        request (request): HTTP Request
+class UserLogoutView(LogoutView):
+    """Logs out the current user and redirects them to the home page
     """
+    next_page = reverse_lazy('accounts:account-login')
 
-    return render(request=request, template_name='home.html')
 
-def accountSignup(request):
-    """View for the student login 
+# Function based views; not used now
 
-    Args:
-        request (request): HTTP Request
-    """
-    form = UserSelectionForm()
-    print("Inside accountSignup method")
+# def homePage(request):
+#     """View for the app home page
 
-    if request.method == 'POST':
-        print("Inside accountSignup method POST")
-        userType = request.POST.get('userType', 'student')
-        if userType == 'student':
-            print("Inside accountSignup method POST student")
-            return studentSignup(request)
-        elif userType == 'teacher':
-            print("Inside accountSignup method POST teacher")
-            return teacherSignup(request)
+#     Args:
+#         request (request): HTTP Request
+#     """
 
-    context = {
-        'form': form
-    }
+#     return render(request=request, template_name='home.html')
+
+# def accountSignup(request):
+#     """View for the student login 
+
+#     Args:
+#         request (request): HTTP Request
+#     """
+#     form = UserSelectionForm()
+#     print("Inside accountSignup method")
+
+#     if request.method == 'POST':
+#         print("Inside accountSignup method POST")
+#         userType = request.POST.get('userType', 'student')
+#         if userType == 'student':
+#             print("Inside accountSignup method POST student")
+#             return studentSignup(request)
+#         elif userType == 'teacher':
+#             print("Inside accountSignup method POST teacher")
+#             return teacherSignup(request)
+
+#     context = {
+#         'form': form
+#     }
         
-    return render(request=request, template_name='userTypeSelection.html', context=context)
+#     return render(request=request, template_name='userTypeSelection.html', context=context)
 
-def studentSignup(request):
-    """View for the student signup
+# def studentSignup(request):
+#     """View for the student signup
 
-    Args:
-        request (request): HTTP Request
-    """
-    form = StudentSignupForm()
-    print("Inside studentSignup method")
+#     Args:
+#         request (request): HTTP Request
+#     """
+#     form = StudentSignupForm()
+#     print("Inside studentSignup method")
 
-    if request.method == 'POST':
-        print("Inside studentSignup method POST")
-        form = StudentSignupForm(request.POST)
+#     if request.method == 'POST':
+#         print("Inside studentSignup method POST")
+#         form = StudentSignupForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            return redirect('/accounts/accountLogin')
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/accounts/accountLogin')
 
-    context = {
-        'form': form
-    }
-    return render(request=request, template_name='studentSignup.html', context=context)
+#     context = {
+#         'form': form
+#     }
+#     return render(request=request, template_name='studentSignup.html', context=context)
 
-def teacherSignup(request):
-    """View for the teacher signup
+# def teacherSignup(request):
+#     """View for the teacher signup
 
-    Args:
-        request (request): HTTP Request
-    """
-    form = TeacherSignupForm()
+#     Args:
+#         request (request): HTTP Request
+#     """
+#     form = TeacherSignupForm()
 
-    if request.method == 'POST':
-        form = TeacherSignupForm(request.POST)
+#     if request.method == 'POST':
+#         form = TeacherSignupForm(request.POST)
 
-        if form.is_valid():
-            form.save()    #  Teacher.objects.create()
+#         if form.is_valid():
+#             form.save()    #  Teacher.objects.create()
         
-    context = {
-        'form': form
-    }
-    return render(request=request, template_name='userTypeSelection.html', context=context)
+#     context = {
+#         'form': form
+#     }
+#     return render(request=request, template_name='userTypeSelection.html', context=context)
 
-def accountLogin(request):
-    """View for the login page
+# def accountLogin(request):
+#     """View for the login page
 
-    Args:
-        request (request): HTTP Request
-    """
-    form = UserSelectionForm()
+#     Args:
+#         request (request): HTTP Request
+#     """
+#     form = UserSelectionForm()
 
-    if request.method == 'POST':
-        userType = request.POST['userType']
-        if userType == 'student':
-            return studentLogin(request)
-        elif userType == 'teacher':
-            return teacherLogin(request)
+#     if request.method == 'POST':
+#         userType = request.POST['userType']
+#         if userType == 'student':
+#             return studentLogin(request)
+#         elif userType == 'teacher':
+#             return teacherLogin(request)
 
-    context = {
-        'form': form
-    }
+#     context = {
+#         'form': form
+#     }
         
-    return render(request=request, template_name='userTypeSelection.html', context=context)
+#     return render(request=request, template_name='userTypeSelection.html', context=context)
 
 
-def studentLogin(request):
-    """View for the student login
+# def studentLogin(request):
+#     """View for the student login
 
-    Args:
-        request (request): HTTP Request
-    """
-    form = StudentLoginForm()
-    # print("Student signup initial")
+#     Args:
+#         request (request): HTTP Request
+#     """
+#     form = StudentLoginForm()
+#     # print("Student signup initial")
 
-    if request.method == 'POST':
-        # print("Student signup POST")
-        form = StudentLoginForm(request.POST)
+#     if request.method == 'POST':
+#         # print("Student signup POST")
+#         form = StudentLoginForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+#         if form.is_valid():
+#             form.save()
 
-    context = {
-        'form': form
-    }
-    return render(request=request, template_name='studentLogin.html', context=context)
+#     context = {
+#         'form': form
+#     }
+#     return render(request=request, template_name='studentLogin.html', context=context)
 
-def teacherLogin(request):
-    """View for the teacher login
+# def teacherLogin(request):
+#     """View for the teacher login
 
-    Args:
-        request (request): HTTP Request
-    """
-    form = StudentSignupForm()
-    # print("Student signup initial")
+#     Args:
+#         request (request): HTTP Request
+#     """
+#     form = StudentSignupForm()
+#     # print("Student signup initial")
 
-    if request.method == 'POST':
-        # print("Student signup POST")
-        form = StudentSignupForm(request.POST)
+#     if request.method == 'POST':
+#         # print("Student signup POST")
+#         form = StudentSignupForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+#         if form.is_valid():
+#             form.save()
 
-    context = {
-        'form': form
-    }
-    return render(request=request, template_name='studentSignup.html', context=context)
+#     context = {
+#         'form': form
+#     }
+#     return render(request=request, template_name='studentSignup.html', context=context)
 
-def studentDetailView(request, pk):
-    studentDetail = Student.objects.get(id=pk)
+# def studentDetailView(request, pk):
+    # studentDetail = Student.objects.get(id=pk)
 
-    context = {
-        'student': studentDetail
-    }
-    return render(request, 'accounts/studentDetail.html', context=context)
+    # context = {
+    #     'student': studentDetail
+    # }
+    # return render(request, 'accounts/studentDetail.html', context=context)
